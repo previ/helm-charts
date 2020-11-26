@@ -146,9 +146,14 @@ data:
       # Service used to store and cache api-keys from the management repository to avoid direct repository communication
       # while serving requests.
       apikeyscache:
-        delay: 10000
+        delay: {{ .Values.gateway.services.apikeyscache.delay }}
         unit: MILLISECONDS
         threads: 3 # Threads core size used to retrieve api-keys from repository.
+
+      subscriptions:
+        delay: {{ .Values.gateway.services.subscriptions.delay }}
+        unit: SECONDS
+        threads: 3 # Threads core size used to retrieve subscriptions from repository.
 
       # Local registry service.
       # This registry is used to load API Definition with json format from the file system. By doing so, you do not need

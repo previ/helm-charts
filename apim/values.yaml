@@ -176,7 +176,7 @@ es:
   enabled: true
   cluster: elasticsearch
   index: gravitee
-  ingest_plugin: 
+  ingest_plugin: false
   # If the details for security are entered
   # authentication will be provided for the
   # elastic search cluster
@@ -290,7 +290,7 @@ api:
   replicaCount: 1
   image:
     repository: graviteeio/management-api
-    # tag: 1.29.5
+    # tag: 1.30.8
     pullPolicy: Always
     # pullSecrets:
     #   - name: gravitee_secrets
@@ -472,17 +472,24 @@ gateway:
       #     kubernetes.io/rewrite-target: /gateway
       #     nginx.ingress.kubernetes.io/configuration-snippet: "etag on;\nproxy_pass_header ETag;\nproxy_set_header if-match \"\";\n"
       #     kubernetes.io/tls-acme: "true"
-      #   tls:
+      #   tls:  
       #     # Secrets must be manually created in the namespace.
       #     - secretName: chart-example-tls
       #       hosts:
       #         - chart-example.local
+
+    apikeyscache:
+      delay: 10000 # MILLISECONDS
+
+    subscriptions:
+      delay: 10000 # MILLISECONDS
+
   apiKey:
     header: X-Gravitee-Api-Key
     param: api-key
   image:
     repository: graviteeio/gateway
-    # tag: 1.30.7
+    # tag: 1.30.8
     pullPolicy: Always
     # pullSecrets:
     #   - name: gravitee_secrets
@@ -572,7 +579,7 @@ ui:
   replicaCount: 1
   image:
     repository: graviteeio/management-ui
-    # tag: 1.29.5
+    # tag: 1.30.8
     pullPolicy: Always
   # pullSecrets:
   #   - name: gravitee_secrets
